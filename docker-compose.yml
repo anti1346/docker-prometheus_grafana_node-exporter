@@ -39,17 +39,16 @@ services:
   ### Alertmanager
   alertmanager:
     image: prom/alertmanager
+    restart: always
     container_name: alertmanager
     user: root
-    ports: 
-      - 9093:9093
-    volumes:
-      - ~/prometheus/alertmanager/config/:/etc/alertmanager/
-    networks:
-      - promnet
-    restart: always
     command:
       - '--config.file=/etc/alertmanager/alertmanager.yml'
+    volumes:
+      - ./prometheus/alertmanager/config/:/etc/alertmanager/
+    ports:
+      - 9093:9093
+
 
 
 
